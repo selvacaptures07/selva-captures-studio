@@ -83,7 +83,10 @@ function Dashboard() {
     if (!editing) return;
     const { id, created_at: _created, ...rest } = editing;
     const { error } = await supabase.from("enquiries").update(rest).eq("id", id);
-    if (error) return toast.error("Update failed");
+    if (error) {
+      toast.error("Update failed");
+      return;
+    }
     setRows((r) => r.map((x) => (x.id === id ? editing : x)));
     setEditing(null);
     toast.success("Enquiry updated");
