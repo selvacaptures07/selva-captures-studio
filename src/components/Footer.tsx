@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import logo from "@/assets/logo.png";
+import logoAsset from "@/assets/logo.png.asset.json";
 import { BRAND } from "@/lib/site-data";
+
+const logo = logoAsset.url;
 
 export function Footer() {
   return (
