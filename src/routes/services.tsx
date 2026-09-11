@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SERVICES } from "@/lib/site-data";
+import { SERVICE_IMAGES } from "@/lib/photos";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -22,29 +23,38 @@ export const Route = createFileRoute("/services")({
 
 function Services() {
   return (
-    <section className="mx-auto max-w-6xl px-5 py-20">
-      <p className="text-center text-xs uppercase tracking-[0.4em] text-gold">Our Services</p>
-      <h1 className="mt-4 text-center font-display text-4xl text-gradient-gold sm:text-5xl">
-        Photography &amp; Films
-      </h1>
-      <div className="mx-auto my-8 h-px w-24 bg-gold/60" />
+    <section className="section-light">
+      <div className="mx-auto max-w-6xl px-5 py-20">
+        <p className="text-center text-xs uppercase tracking-[0.4em] text-gold-deep">Our Services</p>
+        <h1 className="mt-4 text-center font-display text-3xl text-gradient-gold-deep sm:text-5xl">
+          Photography &amp; Films
+        </h1>
+        <div className="mx-auto my-8 h-px w-24 bg-gold-deep/50" />
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {SERVICES.map((s) => (
-          <article
-            key={s.title}
-            className="rounded-sm border border-border bg-card/50 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-gold"
-          >
-            <h2 className="font-display text-xl text-gold">{s.title}</h2>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
-          </article>
-        ))}
-      </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {SERVICES.map((s, i) => (
+            <article key={s.title} className="card-light overflow-hidden rounded-sm">
+              <img
+                src={SERVICE_IMAGES[i]}
+                alt={s.title}
+                width={1000}
+                height={1250}
+                loading="lazy"
+                className="h-44 w-full object-cover"
+              />
+              <div className="p-5">
+                <h2 className="font-display text-lg text-gold-deep">{s.title}</h2>
+                <p className="mt-2 text-sm leading-relaxed text-ink-muted">{s.desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
 
-      <div className="mt-14 text-center">
-        <Link to="/packages" className="btn-gold rounded-sm px-8 py-3 text-xs uppercase tracking-[0.25em]">
-          View Packages
-        </Link>
+        <div className="mt-14 text-center">
+          <Link to="/packages" className="btn-outline-ink rounded-sm px-8 py-3 text-xs uppercase tracking-[0.25em]">
+            View Packages
+          </Link>
+        </div>
       </div>
     </section>
   );
