@@ -8,6 +8,13 @@
       "when": 1789123261649,
       "tag": "0000_create_enquiries_and_admin_roles",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1789129833486,
+      "tag": "0001_restrict_security_definer_execute",
+      "breakpoints": true
     }
   ]
 }
