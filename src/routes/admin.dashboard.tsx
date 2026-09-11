@@ -70,7 +70,10 @@ function Dashboard() {
   async function onDelete(id: string) {
     if (!confirm("Delete this enquiry permanently?")) return;
     const { error } = await supabase.from("enquiries").delete().eq("id", id);
-    if (error) return toast.error("Delete failed");
+    if (error) {
+      toast.error("Delete failed");
+      return;
+    }
     setRows((r) => r.filter((x) => x.id !== id));
     toast.success("Enquiry deleted");
   }
