@@ -128,6 +128,7 @@ function RootComponent() {
         </main>
         {!isAdmin && <Footer />}
       </div>
+      {!isAdmin && <WhatsAppButton />}
       <Toaster position="top-center" />
     </QueryClientProvider>
   );
