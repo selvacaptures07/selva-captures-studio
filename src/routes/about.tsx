@@ -1,5 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import g2 from "@/assets/g2.jpg";
+import { PHOTOS } from "@/lib/photos";
+
+const g2 = PHOTOS[4];
 
 export const Route = createFileRoute("/about")({
   head: () => ({

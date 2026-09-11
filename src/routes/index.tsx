@@ -1,12 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import hero from "@/assets/hero.jpg";
 import logoAsset from "@/assets/logo.png.asset.json";
-import g1 from "@/assets/g1.jpg";
-import g3 from "@/assets/g3.jpg";
-import g5 from "@/assets/g5.jpg";
+import { HERO, PHOTOS } from "@/lib/photos";
 import { BRAND, SERVICES } from "@/lib/site-data";
 
 const logo = logoAsset.url;
+const hero = HERO;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -98,7 +96,7 @@ function Home() {
       <section className="mx-auto max-w-6xl px-5 py-20">
         <h2 className="text-center font-display text-3xl text-gradient-gold sm:text-4xl">Recent Work</h2>
         <div className="mt-12 grid gap-4 sm:grid-cols-3">
-          {[g1, g3, g5].map((src, i) => (
+          {PHOTOS.slice(1, 4).map((src, i) => (
             <img
               key={i}
               src={src}
