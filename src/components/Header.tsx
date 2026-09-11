@@ -20,14 +20,20 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
-        <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <img src={logo} alt="Selva Captures logo" width={44} height={44} className="h-10 w-10" />
-          <span className="leading-tight">
-            <span className="block font-display text-lg tracking-[0.18em] text-gradient-gold uppercase">
+      <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 py-2.5 sm:px-5 lg:flex lg:justify-between">
+        <Link to="/" className="flex min-w-0 items-center gap-2.5" onClick={() => setOpen(false)}>
+          <img
+            src={logo}
+            alt="Selva Captures logo"
+            width={44}
+            height={44}
+            className="h-9 w-9 shrink-0 rounded-full sm:h-11 sm:w-11"
+          />
+          <span className="min-w-0 leading-tight">
+            <span className="block truncate font-display text-base tracking-[0.16em] text-gradient-gold uppercase sm:text-lg">
               {BRAND.name}
             </span>
-            <span className="block text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
+            <span className="block truncate text-[9px] uppercase tracking-[0.35em] text-muted-foreground sm:text-[10px]">
               {BRAND.tagline}
             </span>
           </span>
