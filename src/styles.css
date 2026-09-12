@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Selva Captures design system — Black background, gold accents, white text.
+ * Selva Captures design system — matte charcoal, warm ivory and restrained champagne gold.
  */
 
 @theme inline {
@@ -44,38 +44,37 @@
 
 :root {
   --radius: 0.25rem;
-  --background: oklch(0.13 0.005 90);
-  --foreground: oklch(0.97 0.004 90);
-  --card: oklch(0.17 0.006 90);
-  --card-foreground: oklch(0.97 0.004 90);
-  --popover: oklch(0.17 0.006 90);
-  --popover-foreground: oklch(0.97 0.004 90);
-  --primary: oklch(0.78 0.13 85);
-  --primary-foreground: oklch(0.14 0.006 90);
-  --secondary: oklch(0.22 0.008 90);
-  --secondary-foreground: oklch(0.97 0.004 90);
-  --muted: oklch(0.22 0.008 90);
-  --muted-foreground: oklch(0.74 0.01 90);
-  --accent: oklch(0.24 0.02 85);
-  --accent-foreground: oklch(0.88 0.1 85);
+  --background: oklch(0.105 0.004 70);
+  --foreground: oklch(0.93 0.012 83);
+  --card: oklch(0.145 0.005 70);
+  --card-foreground: oklch(0.93 0.012 83);
+  --popover: oklch(0.145 0.005 70);
+  --popover-foreground: oklch(0.93 0.012 83);
+  --primary: oklch(0.76 0.075 81);
+  --primary-foreground: oklch(0.13 0.006 70);
+  --secondary: oklch(0.18 0.006 70);
+  --secondary-foreground: oklch(0.93 0.012 83);
+  --muted: oklch(0.19 0.006 70);
+  --muted-foreground: oklch(0.68 0.012 80);
+  --accent: oklch(0.2 0.014 78);
+  --accent-foreground: oklch(0.82 0.07 82);
   --destructive: oklch(0.6 0.21 25);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.78 0.13 85 / 25%);
-  --input: oklch(0.78 0.13 85 / 30%);
-  --ring: oklch(0.78 0.13 85 / 60%);
-  --gold: oklch(0.78 0.13 85);
-  --gold-soft: oklch(0.88 0.08 88);
-  --gold-deep: oklch(0.58 0.11 75);
-  --paper: oklch(0.985 0.004 90);
-  --ink: oklch(0.19 0.006 90);
-  --ink-muted: oklch(0.45 0.008 90);
-  --gradient-gold: linear-gradient(100deg, oklch(0.7 0.11 78), oklch(0.9 0.09 90), oklch(0.74 0.12 82));
-  --shadow-gold: 0 18px 50px -22px oklch(0.78 0.13 85 / 45%);
+  --border: oklch(0.76 0.075 81 / 20%);
+  --input: oklch(0.76 0.075 81 / 26%);
+  --ring: oklch(0.76 0.075 81 / 48%);
+  --gold: oklch(0.76 0.075 81);
+  --gold-soft: oklch(0.83 0.055 84);
+  --gold-deep: oklch(0.7 0.07 78);
+  --paper: oklch(0.13 0.005 70);
+  --ink: oklch(0.93 0.012 83);
+  --ink-muted: oklch(0.67 0.012 80);
+  --shadow-gold: 0 14px 36px -26px oklch(0.76 0.075 81 / 35%);
 }
 
 .dark {
-  --background: oklch(0.13 0.005 90);
-  --foreground: oklch(0.97 0.004 90);
+  --background: oklch(0.105 0.004 70);
+  --foreground: oklch(0.93 0.012 83);
 }
 
 @layer base {
@@ -100,21 +99,19 @@
 }
 
 @utility text-gradient-gold {
-  background-image: var(--gradient-gold);
-  background-clip: text;
-  color: transparent;
+  color: var(--gold-soft);
 }
 
 @utility btn-gold {
-  background-image: var(--gradient-gold);
+  background-color: var(--gold);
   color: var(--primary-foreground);
   box-shadow: var(--shadow-gold);
   transition:
     transform 0.3s ease,
     filter 0.3s ease;
   &:hover {
-    filter: brightness(1.06);
-    transform: translateY(-2px);
+    background-color: var(--gold-soft);
+    transform: translateY(-1px);
   }
 }
 
@@ -125,8 +122,8 @@
     background-color 0.3s ease,
     transform 0.3s ease;
   &:hover {
-    background-color: oklch(0.78 0.13 85 / 12%);
-    transform: translateY(-2px);
+    background-color: oklch(0.76 0.075 81 / 9%);
+    transform: translateY(-1px);
   }
 }
 
@@ -151,22 +148,20 @@
 }
 
 @utility text-gradient-gold-deep {
-  background-image: linear-gradient(100deg, oklch(0.55 0.1 72), oklch(0.68 0.12 84), oklch(0.55 0.1 72));
-  background-clip: text;
-  color: transparent;
+  color: var(--gold-soft);
 }
 
 @utility card-light {
-  background-color: #fff;
-  border: 1px solid oklch(0.58 0.11 75 / 28%);
+  background-color: var(--card);
+  border: 1px solid oklch(0.76 0.075 81 / 16%);
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease,
     border-color 0.3s ease;
   &:hover {
-    transform: translateY(-4px);
-    border-color: var(--gold-deep);
-    box-shadow: 0 18px 40px -24px oklch(0.58 0.11 75 / 55%);
+    transform: translateY(-2px);
+    border-color: oklch(0.76 0.075 81 / 38%);
+    box-shadow: 0 18px 40px -28px oklch(0.76 0.075 81 / 30%);
   }
 }
 
@@ -177,7 +172,7 @@
     background-color 0.3s ease,
     transform 0.3s ease;
   &:hover {
-    background-color: oklch(0.58 0.11 75 / 10%);
-    transform: translateY(-2px);
+    background-color: oklch(0.76 0.075 81 / 8%);
+    transform: translateY(-1px);
   }
 }
