@@ -21,6 +21,7 @@ export const Route = createFileRoute("/contact")({
 
 function Contact() {
   const { data: settings } = useSiteSettings();
+  const whatsappDisplay = settings.whatsapp === "919344160526" ? "+91 9344160526" : `+${settings.whatsapp}`;
   const actions = [
     { label: "Call Now", href: `tel:${settings.phone_raw}`, Icon: Phone },
     { label: "WhatsApp", href: `https://wa.me/${settings.whatsapp}`, Icon: MessageCircle },
@@ -52,7 +53,7 @@ function Contact() {
         <p>
           <span className="text-gold">Phone: </span>
           <a href={`tel:${settings.phone_raw}`} className="hover:text-gold">
-            {settings.phone}
+            {whatsappDisplay}
           </a>
         </p>
         <p>
