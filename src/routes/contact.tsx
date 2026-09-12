@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Phone, MessageCircle, Instagram, Mail } from "lucide-react";
 import { BRAND } from "@/lib/site-data";
 import { EnquiryForm } from "@/components/EnquiryForm";
+import { useSiteSettings } from "@/lib/site-content";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -18,14 +19,14 @@ export const Route = createFileRoute("/contact")({
   component: Contact,
 });
 
-const actions = [
-  { label: "Call Now", href: `tel:${BRAND.phoneRaw}`, Icon: Phone },
-  { label: "WhatsApp", href: `https://wa.me/${BRAND.whatsapp}`, Icon: MessageCircle },
-  { label: "Instagram", href: BRAND.instagramUrl, Icon: Instagram },
-  { label: "Email Us", href: `mailto:${BRAND.email}`, Icon: Mail },
-];
-
 function Contact() {
+  const { data: settings } = useSiteSettings();
+  const actions = [
+    { label: "Call Now", href: `tel:${settings.phone_raw}`, Icon: Phone },
+    { label: "WhatsApp", href: `https://wa.me/${settings.whatsapp}`, Icon: MessageCircle },
+    { label: "Instagram", href: BRAND.instagramUrl, Icon: Instagram },
+    { label: "Email Us", href: `mailto:${BRAND.email}`, Icon: Mail },
+  ];
   return (
     <section className="mx-auto max-w-5xl px-5 py-20">
       <p className="text-center text-xs uppercase tracking-[0.4em] text-gold">Contact</p>
@@ -50,14 +51,14 @@ function Contact() {
       <div className="mt-12 grid gap-3 rounded-sm border border-border bg-card/40 p-8 text-sm">
         <p>
           <span className="text-gold">Phone: </span>
-          <a href={`tel:${BRAND.phoneRaw}`} className="hover:text-gold">
-            {BRAND.phone}
+          <a href={`tel:${settings.phone_raw}`} className="hover:text-gold">
+            {settings.phone}
           </a>
         </p>
         <p>
           <span className="text-gold">WhatsApp: </span>
-          <a href={`https://wa.me/${BRAND.whatsapp}`} target="_blank" rel="noreferrer" className="hover:text-gold">
-            {BRAND.phone}
+          <a href={`https://wa.me/${settings.whatsapp}`} target="_blank" rel="noreferrer" className="hover:text-gold">
+            {settings.phone}
           </a>
         </p>
         <p>
