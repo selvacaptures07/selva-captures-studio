@@ -53,13 +53,13 @@ function Contact() {
         <p>
           <span className="text-gold">Phone: </span>
           <a href={`tel:${settings.phone_raw}`} className="hover:text-gold">
-            {whatsappDisplay}
+            {settings.phone}
           </a>
         </p>
         <p>
           <span className="text-gold">WhatsApp: </span>
           <a href={`https://wa.me/${settings.whatsapp}`} target="_blank" rel="noreferrer" className="hover:text-gold">
-            {settings.phone}
+            {whatsappDisplay}
           </a>
         </p>
         <p>
