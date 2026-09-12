@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { HERO, GALLERY, SERVICE_IMAGES } from "@/lib/photos";
+import { HERO, SERVICE_IMAGES } from "@/lib/photos";
 import { BRAND, SERVICES } from "@/lib/site-data";
 import { useGallery, useSiteSettings } from "@/lib/site-content";
 

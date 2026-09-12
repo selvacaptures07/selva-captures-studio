@@ -27,7 +27,7 @@ function Gallery() {
       <div className="columns-2 gap-4 lg:columns-3 [&>*]:mb-4">
         {gallery.map((p) => (
           <img
-            key={p.src}
+            key={p.id}
             src={p.resolved_url}
             alt={p.alt_text}
             width={1000}

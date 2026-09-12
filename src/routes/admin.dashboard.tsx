@@ -96,7 +96,10 @@ function Dashboard() {
       whatsapp: digits,
       updated_at: new Date().toISOString(),
     }).eq("id", "main");
-    if (error) return toast.error("Contact update failed");
+    if (error) {
+      toast.error("Contact update failed");
+      return;
+    }
     setSettings({ ...settings, phone_raw: `+${phoneDigits}`, whatsapp: digits });
     toast.success("Contact details updated");
   }
@@ -108,12 +111,18 @@ function Dashboard() {
       original_price: item.original_price || null,
       updated_at: new Date().toISOString(),
     }).eq("id", item.id);
-    if (error) return toast.error("Package update failed");
+    if (error) {
+      toast.error("Package update failed");
+      return;
+    }
     toast.success("Package updated");
   }
 
   async function uploadGallery(file: File, replace?: GalleryImage) {
-    if (!file.type.startsWith("image/")) return toast.error("Please choose an image file");
+    if (!file.type.startsWith("image/")) {
+      toast.error("Please choose an image file");
+      return;
+    }
     setUploading(true);
     const extension = file.name.split(".").pop()?.toLowerCase() || "jpg";
     const path = `${crypto.randomUUID()}.${extension}`;
@@ -140,7 +149,10 @@ function Dashboard() {
   async function deleteGallery(image: GalleryImage) {
     if (!confirm("Remove this gallery image?")) return;
     const { error } = await supabase.from("gallery_images").delete().eq("id", image.id);
-    if (error) return toast.error("Image could not be removed");
+    if (error) {
+      toast.error("Image could not be removed");
+      return;
+    }
     if (image.storage_path) await supabase.storage.from("gallery").remove([image.storage_path]);
     setGallery((items) => items.filter((item) => item.id !== image.id));
     toast.success("Gallery image removed");
@@ -149,7 +161,10 @@ function Dashboard() {
   async function deleteEnquiry(id: string) {
     if (!confirm("Delete this enquiry permanently?")) return;
     const { error } = await supabase.from("enquiries").delete().eq("id", id);
-    if (error) return toast.error("Delete failed");
+    if (error) {
+      toast.error("Delete failed");
+      return;
+    }
     setRows((items) => items.filter((item) => item.id !== id));
     toast.success("Enquiry deleted");
   }
@@ -159,7 +174,10 @@ function Dashboard() {
     if (!editing) return;
     const { id, created_at: _created, ...updates } = editing;
     const { error } = await supabase.from("enquiries").update(updates).eq("id", id);
-    if (error) return toast.error("Update failed");
+    if (error) {
+      toast.error("Update failed");
+      return;
+    }
     setRows((items) => items.map((item) => item.id === id ? editing : item));
     setEditing(null);
     toast.success("Enquiry updated");
@@ -187,7 +205,7 @@ function Dashboard() {
 
       <Tabs defaultValue="enquiries" className="mt-8">
         <TabsList className="h-auto w-full justify-start gap-1 overflow-x-auto rounded-sm border border-border bg-card/50 p-1">
-          {[["enquiries", "Enquiries"], ["contact", "Contact"], ["packages", "Packages"], ["gallery", "Gallery"]].map(([value, text]) => (
+          {([["enquiries", "Enquiries"], ["contact", "Contact"], ["packages", "Packages"], ["gallery", "Gallery"]] as const).map(([value, text]) => (
             <TabsTrigger key={value} value={value} className="rounded-sm px-4 py-2 uppercase tracking-[0.12em] data-[state=active]:text-gold">{text}</TabsTrigger>
           ))}
         </TabsList>
