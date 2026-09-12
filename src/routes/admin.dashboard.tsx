@@ -129,7 +129,8 @@ function Dashboard() {
     const { error: uploadError } = await supabase.storage.from("gallery").upload(path, file, { contentType: file.type });
     if (uploadError) {
       setUploading(false);
-      return toast.error("Image upload failed");
+      toast.error("Image upload failed");
+      return;
     }
     const payload = { image_url: path, storage_path: path, alt_text: replace?.alt_text ?? "Selva Captures wedding photography" };
     const result = replace
@@ -138,7 +139,8 @@ function Dashboard() {
     if (result.error) {
       await supabase.storage.from("gallery").remove([path]);
       setUploading(false);
-      return toast.error("Gallery update failed");
+      toast.error("Gallery update failed");
+      return;
     }
     if (replace?.storage_path) await supabase.storage.from("gallery").remove([replace.storage_path]);
     setUploading(false);
