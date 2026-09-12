@@ -15,6 +15,13 @@
       "when": 1789129833486,
       "tag": "0001_restrict_security_definer_execute",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1789185618318,
+      "tag": "0002_editable_site_content",
+      "breakpoints": true
     }
   ]
 }

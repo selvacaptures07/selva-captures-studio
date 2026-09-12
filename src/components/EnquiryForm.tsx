@@ -3,6 +3,7 @@ import { toast } from "sonner";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { SERVICES } from "@/lib/site-data";
+import { usePackages } from "@/lib/site-content";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Please enter your name").max(100),
@@ -12,6 +13,7 @@ const schema = z.object({
   event_date: z.string().trim().max(20),
   event_location: z.string().trim().max(150),
   service: z.string().trim().max(100),
+  selected_package: z.string().trim().max(100),
   message: z.string().trim().max(1000),
 });
 
@@ -21,6 +23,8 @@ const field =
 export function EnquiryForm({ defaultService = "" }: { defaultService?: string }) {
   const [loading, setLoading] = useState(false);
   const [service, setService] = useState(defaultService);
+  const [selectedPackage, setSelectedPackage] = useState("");
+  const { data: packages } = usePackages();
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -34,6 +38,7 @@ export function EnquiryForm({ defaultService = "" }: { defaultService?: string }
       event_date: String(fd.get("event_date") ?? ""),
       event_location: String(fd.get("event_location") ?? ""),
       service: String(fd.get("service") ?? ""),
+      selected_package: String(fd.get("selected_package") ?? ""),
       message: String(fd.get("message") ?? ""),
     };
 
@@ -53,6 +58,7 @@ export function EnquiryForm({ defaultService = "" }: { defaultService?: string }
       event_date: v.event_date || null,
       event_location: v.event_location || null,
       service: v.service || null,
+      selected_package: v.selected_package || null,
       message: v.message || null,
     });
     setLoading(false);
@@ -64,6 +70,7 @@ export function EnquiryForm({ defaultService = "" }: { defaultService?: string }
     toast.success("Thank you! We will contact you soon.");
     form.reset();
     setService("");
+    setSelectedPackage("");
   }
 
   return (
@@ -84,6 +91,19 @@ export function EnquiryForm({ defaultService = "" }: { defaultService?: string }
         {SERVICES.map((s) => (
           <option key={s.title} value={s.title}>
             {s.title}
+          </option>
+        ))}
+      </select>
+      <select
+        name="selected_package"
+        value={selectedPackage}
+        onChange={(e) => setSelectedPackage(e.target.value)}
+        className={`${field} sm:col-span-2`}
+      >
+        <option value="">Select a Package</option>
+        {packages.map((item) => (
+          <option key={item.id} value={item.name}>
+            {item.name} — {item.price}
           </option>
         ))}
       </select>

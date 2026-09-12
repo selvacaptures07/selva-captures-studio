@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { GALLERY } from "@/lib/photos";
+import { useGallery } from "@/lib/site-content";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -17,6 +17,7 @@ export const Route = createFileRoute("/gallery")({
 });
 
 function Gallery() {
+  const { data: gallery } = useGallery();
   return (
     <section className="mx-auto max-w-6xl px-5 py-20">
       <p className="text-center text-xs uppercase tracking-[0.4em] text-gold">Gallery</p>
@@ -24,11 +25,11 @@ function Gallery() {
       <div className="mx-auto my-8 h-px w-24 bg-gold/60" />
 
       <div className="columns-2 gap-4 lg:columns-3 [&>*]:mb-4">
-        {GALLERY.map((p) => (
+        {gallery.map((p) => (
           <img
-            key={p.src}
-            src={p.src}
-            alt={p.alt}
+            key={p.id}
+            src={p.resolved_url}
+            alt={p.alt_text}
             width={1000}
             height={1250}
             loading="lazy"

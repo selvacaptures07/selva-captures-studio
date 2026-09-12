@@ -25,6 +25,7 @@ export type Database = {
           message: string | null
           name: string
           phone: string
+          selected_package: string | null
           service: string | null
         }
         Insert: {
@@ -37,6 +38,7 @@ export type Database = {
           message?: string | null
           name: string
           phone: string
+          selected_package?: string | null
           service?: string | null
         }
         Update: {
@@ -49,7 +51,89 @@ export type Database = {
           message?: string | null
           name?: string
           phone?: string
+          selected_package?: string | null
           service?: string | null
+        }
+        Relationships: []
+      }
+      gallery_images: {
+        Row: {
+          alt_text: string
+          created_at: string
+          display_order: number
+          id: string
+          image_url: string
+          storage_path: string | null
+        }
+        Insert: {
+          alt_text?: string
+          created_at?: string
+          display_order?: number
+          id?: string
+          image_url: string
+          storage_path?: string | null
+        }
+        Update: {
+          alt_text?: string
+          created_at?: string
+          display_order?: number
+          id?: string
+          image_url?: string
+          storage_path?: string | null
+        }
+        Relationships: []
+      }
+      packages: {
+        Row: {
+          created_at: string
+          display_order: number
+          id: string
+          name: string
+          original_price: string | null
+          price: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          display_order?: number
+          id?: string
+          name: string
+          original_price?: string | null
+          price: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          display_order?: number
+          id?: string
+          name?: string
+          original_price?: string | null
+          price?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      site_settings: {
+        Row: {
+          id: string
+          phone: string
+          phone_raw: string
+          updated_at: string
+          whatsapp: string
+        }
+        Insert: {
+          id?: string
+          phone?: string
+          phone_raw?: string
+          updated_at?: string
+          whatsapp?: string
+        }
+        Update: {
+          id?: string
+          phone?: string
+          phone_raw?: string
+          updated_at?: string
+          whatsapp?: string
         }
         Relationships: []
       }

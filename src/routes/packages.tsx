@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { PACKAGES } from "@/lib/site-data";
+import { usePackages } from "@/lib/site-content";
 
 export const Route = createFileRoute("/packages")({
   head: () => ({
@@ -17,6 +17,7 @@ export const Route = createFileRoute("/packages")({
 });
 
 function Packages() {
+  const { data: packages } = usePackages();
   return (
     <section className="section-light">
       <div className="mx-auto max-w-6xl px-5 py-20">
@@ -25,11 +26,11 @@ function Packages() {
         <div className="mx-auto my-8 h-px w-24 bg-gold-deep/50" />
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {PACKAGES.map((p) => (
-            <article key={p.name} className="card-light flex flex-col rounded-sm p-8 text-center">
+          {packages.map((p) => (
+            <article key={p.id} className="card-light flex flex-col rounded-sm p-8 text-center">
               <h2 className="font-display text-lg uppercase tracking-[0.12em] text-gold-deep">{p.name}</h2>
               <p className="mt-5 font-display text-4xl text-ink">{p.price}</p>
-              {p.original && <p className="mt-1 text-sm text-ink-muted line-through">{p.original}</p>}
+              {p.original_price && <p className="mt-1 text-sm text-ink-muted line-through">{p.original_price}</p>}
               <Link
                 to="/contact"
                 hash="enquiry"

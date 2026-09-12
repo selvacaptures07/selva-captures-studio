@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { HERO, GALLERY, SERVICE_IMAGES } from "@/lib/photos";
+import { HERO, SERVICE_IMAGES } from "@/lib/photos";
 import { BRAND, SERVICES } from "@/lib/site-data";
+import { useGallery, useSiteSettings } from "@/lib/site-content";
 
 const hero = HERO;
 
@@ -24,6 +25,8 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const { data: settings } = useSiteSettings();
+  const { data: gallery } = useGallery();
   return (
     <div>
       <section className="relative min-h-[80vh] overflow-hidden">
@@ -50,7 +53,7 @@ function Home() {
               View Services
             </Link>
             <a
-              href={`https://wa.me/${BRAND.whatsapp}`}
+              href={`https://wa.me/${settings.whatsapp}`}
               target="_blank"
               rel="noreferrer"
               className="btn-outline-gold rounded-sm px-8 py-3 text-xs uppercase tracking-[0.25em]"
@@ -112,11 +115,11 @@ function Home() {
         <h2 className="text-center font-display text-3xl text-gradient-gold sm:text-4xl">Recent Work</h2>
         <div className="mx-auto my-6 h-px w-24 bg-gold/60" />
         <div className="mt-10 grid gap-4 grid-cols-2 sm:grid-cols-3">
-          {GALLERY.slice(0, 6).map((p) => (
+          {gallery.slice(0, 6).map((p) => (
             <img
-              key={p.src}
-              src={p.src}
-              alt={p.alt}
+              key={p.id}
+              src={p.resolved_url}
+              alt={p.alt_text}
               width={1000}
               height={1250}
               loading="lazy"

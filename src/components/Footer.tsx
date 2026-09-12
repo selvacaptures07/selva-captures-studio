@@ -1,10 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import logoAsset from "@/assets/logo.png.asset.json";
 import { BRAND } from "@/lib/site-data";
+import { useSiteSettings } from "@/lib/site-content";
 
 const logo = logoAsset.url;
 
 export function Footer() {
+  const { data: settings } = useSiteSettings();
   return (
     <footer className="border-t border-border bg-card/40">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:grid-cols-2">
@@ -24,8 +26,8 @@ export function Footer() {
 
         <div className="space-y-3 text-sm sm:text-right">
           <p>
-            <a href={`tel:${BRAND.phoneRaw}`} className="transition-colors hover:text-gold">
-              {BRAND.phone}
+            <a href={`tel:${settings.phone_raw}`} className="transition-colors hover:text-gold">
+              {settings.phone}
             </a>
           </p>
           <p>
